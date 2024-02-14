@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async</title>
+</head>
+<body>
+    <h1>Lorem ipsum dolor sit.</h1>
+    <button id="start">start</button>
+    <button id="stop">stop</button>
+
+</body>
+<script>
+    const color = function () {
+        console.log("dream should be big");
+    }
+
+    const change = function(){
+        document.querySelector("h1").innerHTML = "colourful Hands"
+    }
+
+    const changeme = setTimeout(change,3000)
+
+    document.querySelector('#stop').addEventListener('click',function(){
+        clearTimeout(changeme)
+        console.log("stopped");
+    })
+    
+    const strinterval = function (str) {
+        console.log(str,Date.now());
+    }
+    const intervalId = setInterval = setInterval(strinterval,1000,"hi")
+    
+    // const clear = clearInterval(intervalId,1000)
+
+
+
+
+</script>
+</html>
+
+
+
