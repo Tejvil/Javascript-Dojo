@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api Request</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f0f0f0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          margin: 0;
+          
+        }
+        .heading {
+          text-align: center;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 100%;
+          background-color: #0a3b70;
+          color: #fff;
+          padding: 10px;
+          margin: 0;
+        }
+    
+        .repoCount {
+          background-color: #fff;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+          width: 50%;
+          height: 50%;
+        }
+    
+        .repoCountHeader {
+          background-color: #007bff;
+          color: #fff;
+          padding: 10px;
+          text-align: center;
+        }
+    
+        .photo {
+          width: 100%;
+          height: auto;
+          max-height: 200px;
+        }
+    
+        .repoCountContent {
+          padding: 20px;
+        }
+    
+        .repos {
+          text-align: center;
+          font-size: 30px;
+          font-weight: bold;
+          margin-bottom: 10px;
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+      </style>
+</head>
+
+<body>
+    <h3 class="heading">API Requests</h3>
+    <div class="repoCount">
+        <div class="repoCountHeader">
+            <h2>Repo Count</h2>
+        </div>
+        <div class="repoCountContent">
+            <p class="repos">No.Of Public Repositories</p>
+        </div>
+    </div>
+   <!-- 0   UNSENT	Client has been created. open() not called yet.
+        1	OPENED	open() has been called.
+        2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
+        3	LOADING	Downloading; responseText holds partial data.
+        4	DONE	The operation is complete.         -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            const requestURL = "https://api.github.com/users/tejvil";
+            const xhr = new XMLHttpRequest();                              //used to send and receive requests
+            xhr.open('GET',requestURL);                                   //these are http requests (GET asks for information, POST shares something new, and PUT changes something old)
+            xhr.onreadystatechange = function (){
+                console.log(xhr.readyState);
+                if (xhr.readyState === 4) {
+                    const data = JSON.parse(this.responseText)                //JSON is datatype in which url gives us data and .parse method converts string data type into JSON
+                    console.log(data);
+                    console.log(data.public_repos);
+                    document.querySelector('.repos').innerText = "No.Of Public Repositories : " + data.public_repos;
+                    
+                }
+            };
+            xhr.send();
+        });
+    </script>
+</body>
+</html>
